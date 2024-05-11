@@ -39,7 +39,7 @@ if prompt := st.chat_input('say something here'):
 # Function for generating LLM response
 def generate_response(prompt_input = None, api_key=None):
     client = OpenAI(
-    api_key = st.session_state.apikey
+    api_key = st.session_state.apikey,
     organization='org-CymJVeTtMPU7CBRWNjHzRaJt'
     )
     completion = client.chat.completions.create(
