@@ -18,7 +18,7 @@ if "total_tokens" not in st.session_state:
 
 with st.sidebar:
     try:
-        st.session_state.apikey = st.secrets("OPENAI_API_KEY")
+        st.session_state.apikey = st.secrets["OPENAI_API_KEY"]
     except:
         st.session_state.apikey = st.text_input('Enter Api Key')
     
