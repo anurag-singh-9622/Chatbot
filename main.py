@@ -56,15 +56,18 @@ def generate_response(prompt_input = None, api_key=None):
     return response
 
 # Generate a new response if last message is not from assistant
-if st.session_state.messages[-1]["role"] != "assistant":
-    with st.chat_message("assistant"):
-        with st.spinner("Thinking..."):
-            response = generate_response()
-            st.write(response)
-    message = {"role": "assistant", "content": response}
-    st.session_state.messages.append(message)
-    with st.sidebar:
-        st.session_state.total_tokens
+try:
+    if st.session_state.messages[-1]["role"] != "assistant":
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                response = generate_response()
+                st.write(response)
+        message = {"role": "assistant", "content": response}
+        st.session_state.messages.append(message)
+        with st.sidebar:
+            st.session_state.total_tokens
+except:
+    st.error(f"Please Input API key")
 
 
 
