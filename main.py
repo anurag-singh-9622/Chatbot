@@ -37,9 +37,9 @@ if prompt := st.chat_input('say something here'):
         st.write(prompt)
 
 # Function for generating LLM response
-def generate_response(prompt_input = None, api_key = st.secrets["OPENAI_API_KEY"]):
+def generate_response(prompt_input = None, api_key = None):
     client = OpenAI(
-    api_key = api_key,
+    # api_key = api_key,
     organization='org-CymJVeTtMPU7CBRWNjHzRaJt'
     )
     completion = client.chat.completions.create(
