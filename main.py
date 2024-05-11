@@ -10,6 +10,8 @@ from openai import OpenAI
 # prompt = st.chat_input("Say something")
 
 # Store LLM generated responses
+models = ['gpt-3.5-turbo', 'gpt-4-turbo']
+model = st.sidebar.selectbox('Select the model', models)
 if "messages" not in st.session_state.keys():
     st.session_state.messages = [{"role": "assistant", "content": "How may I help you?"}]
 
@@ -46,7 +48,7 @@ def generate_response(prompt_input = None, api_key=None):
     organization='org-CymJVeTtMPU7CBRWNjHzRaJt'
     )
     completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model=model,
         # model = "gpt-4",
         messages=st.session_state.messages, # type: ignore
         max_tokens= 4000,
