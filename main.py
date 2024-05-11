@@ -17,10 +17,10 @@ if "total_tokens" not in st.session_state:
     st.session_state.total_tokens = 0
 
 with st.sidebar:
-    try:
-        st.session_state.apikey = st.secrets["OPENAI_API_KEY"]
-    except:
-        st.session_state.apikey = st.text_input('Enter Api Key')
+    # try:
+    #     st.session_state.apikey = st.secrets["OPENAI_API_KEY"]
+    # except:
+    st.session_state.apikey = st.text_input('Enter Api Key')
     
     def reset_conversation():
         for key in st.session_state.keys():
