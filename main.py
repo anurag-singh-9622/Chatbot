@@ -17,7 +17,11 @@ if "total_tokens" not in st.session_state:
     st.session_state.total_tokens = 0
 
 with st.sidebar:
-    st.session_state.apikey = st.text_input('Enter Api Key')
+    try:
+        st.session_state.apikey = st.secrets("OPENAI_API_KEY")
+    except:
+        st.session_state.apikey = st.text_input('Enter Api Key')
+    
     def reset_conversation():
         for key in st.session_state.keys():
             del st.session_state[key]
@@ -37,9 +41,9 @@ if prompt := st.chat_input('say something here'):
         st.write(prompt)
 
 # Function for generating LLM response
-def generate_response(prompt_input = None, api_key = None):
+def generate_response(prompt_input = None, api_key=None):
     client = OpenAI(
-    # api_key = api_key,
+    api_key = st.session_state.apikey,
     organization='org-CymJVeTtMPU7CBRWNjHzRaJt'
     )
     completion = client.chat.completions.create(
